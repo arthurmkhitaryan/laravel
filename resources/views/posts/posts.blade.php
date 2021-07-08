@@ -5,10 +5,15 @@
     <div class="container">
         @if(isset($posts))
             @foreach($posts as $post)
-                <div>{{$post -> post_title}}</div>
-                <div>{{$post -> post_content}}</div>
+                <div>{{$post -> title}}</div>
+                <div>{{$post -> content}}</div>
+                <ul>
+                    @foreach($comment as $com)
+                        <li>{{$com->comments}}</li>
+                    @endforeach
+                </ul>
                 <div>
-                    <form action="{{route('posts.index', $post -> id)}}" method="get">
+                    <form action="{{ route('comment.store')}}" method="post">
                         @csrf
                         <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
                         <button type="submit" class="btn btn-info">Add Comment</button>
@@ -16,6 +21,5 @@
                 </div>
             @endforeach
         @endif
-
     </div>
 @endsection

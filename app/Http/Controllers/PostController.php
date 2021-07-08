@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Posts;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,7 +17,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Posts::all();
-        return view('posts.posts', compact('posts'));
+        $comment = Comments::all();
+
+        return view('posts.posts', compact('posts', 'comment'));
     }
 
     /**
@@ -26,26 +29,20 @@ class PostController extends Controller
      */
     public function create()
     {
-
+        return view('posts.new_post');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(PostRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
-
         Posts::create($request->all());
 
-        return redirect()->route('posts.posts')
-            ->with('success','Post created successfully.');
+        return view('posts.posts');
     }
 
     /**

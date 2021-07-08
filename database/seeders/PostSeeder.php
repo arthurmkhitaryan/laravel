@@ -16,8 +16,8 @@ class PostSeeder extends Seeder
     {
         for ($i = 1; $i <= 50; $i++) {
             DB::table('posts')->insert([
-                'post_title' => 'Title number' . $i,
-                'post_content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley',
+                'title' => 'Title number' . $i,
+                'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ]);

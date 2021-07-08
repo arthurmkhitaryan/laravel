@@ -15,5 +15,4 @@
 </div>
 @yield('content')
 </body>
-</body>
 </html>

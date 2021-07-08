@@ -9,6 +9,11 @@ class Posts extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'content',
+    ];
+
     public function comment() {
         return $this->belongsTo('App\Models\Comments');
     }

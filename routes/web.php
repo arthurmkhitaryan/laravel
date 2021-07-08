@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,7 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
+Route::resource('comment', CommentController::class);
+
 Route::resource('posts', PostController::class);
+

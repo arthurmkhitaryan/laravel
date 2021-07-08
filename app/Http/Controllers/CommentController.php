@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Egulias\EmailValidator\Warning\Comment;
+use App\Http\Requests\CommentRequest;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -10,12 +11,13 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $comment = Comment::all();
-        return view('comments.comments', compact('comment'));
+        $comment = Comments::all();
+
+        return view('posts.posts', compact('comment'));
     }
 
     /**
@@ -32,11 +34,13 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        //
+        Comments::create($request->all());
+
+        return view('posts.posts');
     }
 
     /**
@@ -68,9 +72,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CommentRequest $request, $id)
     {
-        //
+
     }
 
     /**
